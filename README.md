@@ -45,7 +45,7 @@ flowchart LR
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/你的用户名/nl2sql-agent.git
+git clone https://github.com/zhangjiajiayue/nl2sql-agent.git
 cd nl2sql-agent
 
 # 2. 安装依赖
