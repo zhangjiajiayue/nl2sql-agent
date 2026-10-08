@@ -34,12 +34,14 @@ if "question" not in st.session_state:
 
 question = st.text_input("请输入你的问题：", value=st.session_state.question)
 
-if st.button("🚀 开始分析", type="primary") and question:
+if st.button("开始分析", type="primary") and question:
     with st.spinner("正在分析中..."):
         try:
             res = answer_question(question, Config.DB_PATH)
             st.markdown("### 💡 分析结论")
             st.write(res["answer"])
+            if res.get("retries", 0) > 0:
+                st.caption(f"🔁 初次生成的 SQL 执行出错，已自动修正 {res['retries']} 次后成功")
             st.markdown("### 📈 可视化结果")
             render_result(res["df"])
             with st.expander("🔍 生成的 SQL"):
